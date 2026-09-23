@@ -3,62 +3,103 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Brainrot Cases</title>
 
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #111;
+    background: linear-gradient(135deg, #111827, #241044);
     color: white;
-    text-align: center;
+    min-height: 100vh;
 }
 
 header {
-    background: #191919;
     padding: 20px;
+    text-align: center;
+    background: rgba(0,0,0,0.35);
     font-size: 28px;
     font-weight: bold;
 }
 
-.coins {
-    margin: 20px;
-    font-size: 20px;
+.balance {
+    text-align: center;
+    margin: 25px 0;
+    font-size: 22px;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
 }
 
 .case {
-    background: #222;
-    width: 280px;
-    margin: 40px auto;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 0 25px #555;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 25px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.35);
 }
 
-.case img {
-    width: 180px;
-    height: 180px;
-    object-fit: contain;
+.case-icon {
+    font-size: 90px;
+    margin: 10px;
+}
+
+.case h2 {
+    font-size: 28px;
+    margin: 10px;
+}
+
+.case p {
+    color: #bbb;
 }
 
 button {
-    background: #ffcc00;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 12px;
+    border: 0;
+    border-radius: 14px;
+    padding: 15px 35px;
     font-size: 18px;
     font-weight: bold;
+    background: #ffd21c;
+    color: #111;
     cursor: pointer;
 }
 
-button:hover {
-    transform: scale(1.05);
+button:active {
+    transform: scale(0.95);
 }
 
-#result {
+.result {
     margin-top: 25px;
-    font-size: 24px;
+    min-height: 70px;
+    font-size: 22px;
     font-weight: bold;
+}
+
+.collection {
+    margin-top: 25px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.collection h2 {
+    margin-top: 0;
+}
+
+.item {
+    padding: 12px;
+    margin: 8px 0;
+    background: rgba(255,255,255,0.08);
+    border-radius: 12px;
 }
 </style>
 </head>
@@ -69,67 +110,8 @@ button:hover {
 🧠 BRAINROT CASES
 </header>
 
-<div class="coins">
-    💰 Монеты: <span id="coins">1000</span>
+<div class="balance">
+💰 Монеты: <span id="coins">1000</span>
 </div>
 
-<div class="case">
-
-    <h2>🎁 Brainrot Case</h2>
-
-    <p>Стоимость: 100 монет</p>
-
-    <button onclick="openCase()">
-        ОТКРЫТЬ
-    </button>
-
-    <div id="result"></div>
-
-</div>
-
-<script>
-
-let coins = 1000;
-
-const brainrots = [
-    {name: "Common Brainrot", rarity: "Обычный", chance: 50},
-    {name: "Rare Brainrot", rarity: "Редкий", chance: 30},
-    {name: "Epic Brainrot", rarity: "Эпический", chance: 15},
-    {name: "Legendary Brainrot", rarity: "Легендарный", chance: 5}
-];
-
-function openCase() {
-
-    if (coins < 100) {
-        document.getElementById("result").innerHTML =
-        "❌ Недостаточно монет!";
-        return;
-    }
-
-    coins -= 100;
-
-    let random = Math.random() * 100;
-    let sum = 0;
-    let result;
-
-    for (let brainrot of brainrots) {
-
-        sum += brainrot.chance;
-
-        if (random <= sum) {
-            result = brainrot;
-            break;
-        }
-    }
-
-    document.getElementById("coins").innerText = coins;
-
-    document.getElementById("result").innerHTML =
-        "🎉 " + result.name +
-        "<br>⭐ " + result.rarity;
-}
-
-</script>
-
-</body>
-</html>
+<div class="
