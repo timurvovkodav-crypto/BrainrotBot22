@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brainrot Cases</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: white;
+    text-align: center;
+}
+
+header {
+    background: #191919;
+    padding: 20px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.coins {
+    margin: 20px;
+    font-size: 20px;
+}
+
+.case {
+    background: #222;
+    width: 280px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px #555;
+}
+
+.case img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+}
+
+button {
+    background: #ffcc00;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+#result {
+    margin-top: 25px;
+    font-size: 24px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+🧠 BRAINROT CASES
+</header>
+
+<div class="coins">
+    💰 Монеты: <span id="coins">1000</span>
+</div>
+
+<div class="case">
+
+    <h2>🎁 Brainrot Case</h2>
+
+    <p>Стоимость: 100 монет</p>
+
+    <button onclick="openCase()">
+        ОТКРЫТЬ
+    </button>
+
+    <div id="result"></div>
+
+</div>
+
+<script>
+
+let coins = 1000;
+
+const brainrots = [
+    {name: "Common Brainrot", rarity: "Обычный", chance: 50},
+    {name: "Rare Brainrot", rarity: "Редкий", chance: 30},
+    {name: "Epic Brainrot", rarity: "Эпический", chance: 15},
+    {name: "Legendary Brainrot", rarity: "Легендарный", chance: 5}
+];
+
+function openCase() {
+
+    if (coins < 100) {
+        document.getElementById("result").innerHTML =
+        "❌ Недостаточно монет!";
+        return;
+    }
+
+    coins -= 100;
+
+    let random = Math.random() * 100;
+    let sum = 0;
+    let result;
+
+    for (let brainrot of brainrots) {
+
+        sum += brainrot.chance;
+
+        if (random <= sum) {
+            result = brainrot;
+            break;
+        }
+    }
+
+    document.getElementById("coins").innerText = coins;
+
+    document.getElementById("result").innerHTML =
+        "🎉 " + result.name +
+        "<br>⭐ " + result.rarity;
+}
+
+</script>
+
+</body>
+</html>
